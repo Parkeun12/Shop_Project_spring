@@ -31,7 +31,10 @@
     {{>layouts/leftside}}
 </section>
     <!-- 로그인 영역 -->
+    <!--이 부분 수정해보기 csrf 사용-->
     <form action="/users/login" method="post" role="form">
+<!--        추가해본 거-->
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
         <div class="container">
             <div id="text">
                 <p><h2>로그인</h2></p>

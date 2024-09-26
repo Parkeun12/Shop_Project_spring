@@ -26,12 +26,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
                 httpSecurity.csrf().disable().cors().disable()//REST API에서 csrf 보안이 필요없기 때문에 비활성화,
                 .authorizeHttpRequests(request -> request
-                        .requestMatchers("/admin/**","/product/**").hasRole("ROLE_ADMIN") //admin 접근. hasRole 사용자가 주어진 역할이 있다면 접근을 허용
-                        .requestMatchers("/users/login","/users/new").hasRole("ROLE_USER")
+//                        .requestMatchers("/admin/**","/product/**").hasRole("ROLE_ADMIN") //admin 접근. hasRole 사용자가 주어진 역할이 있다면 접근을 허용
+//                        .requestMatchers("/users/login","/users/new").hasRole("ROLE_USER")
                         //css나 img 적용 안될 때 확인하기
                         //antMatchers 파라미터로 설정한 리소스 접근을 인증절차 없이 허용
                         .requestMatchers("/users/**","/js/**", "/css/**", "/img/**","/product/**","/mainshop/**","/wishlist/**").permitAll()
                         .anyRequest().authenticated()
+
                 )
                 .formLogin(login -> login
                         .loginPage("/users/login").permitAll() //로그인페이지 URL
